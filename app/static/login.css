@@ -88,8 +88,8 @@ body{
 	margin: auto;
 	margin-top: 10px;
 	width: 270px;
-	padding: 8px;
-	height: auto;
+	padding-top: 2px;
+	height: 37px;
 	background-color: #4A485C;
 	text-align: center;
 	font-size: 28px;
@@ -97,6 +97,10 @@ body{
 	color: aliceblue;
 	
 }
+#messagereturn{
+	float: right;
+}
+
 a{
 	color: #484A5C;
 }

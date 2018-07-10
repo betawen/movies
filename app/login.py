@@ -10,6 +10,11 @@ from flask import flash
 from functools import wraps
 from flask import session,redirect,url_for
 
+
+app=Flask(__name__)
+app.config.from_object(config)
+db.init_app(app)
+
 # 登录限制的装饰器
 def login_required(func):
 
@@ -19,16 +24,25 @@ def login_required(func):
             return func(*args,**kwargs)
         else:
             return redirect(url_for('login'))
-
     return wrapper
+
+@app.before_request
+def my_before_request():
+    user_id = session.get('user_id')
+    if user_id:
+        user = User.query.filter(User.id == user_id).first()
+        if user:
+            g.user = user
+
+@app.context_processor
+def my_context_processor():
+    if hasattr(g,'user'):
+        return {'user':g.user}
+    return {}
 
 # from spider2 import ListSpider
 # spider=ListSpider()
 # filmlist= spider.get_all_movie_infos(1)
-
-app=Flask(__name__)
-app.config.from_object(config)
-db.init_app(app)
 
 # def add_films():
 #     for kwargs in filmlist:
@@ -45,7 +59,7 @@ db.init_app(app)
 #         db.session.commit()
 
 @app.route('/')
-def films():
+def welcome():
     # add_films()
     return redirect(url_for('login'))
 
@@ -70,48 +84,102 @@ def login():
             return redirect(url_for('index'))
         else:
             flash("请重新输入密码")
-            return redirect(url_for('login'))
+            return render_template('login.html')
             
         
 @app.route('/index/',methods=['POST','GET'])
 @login_required
 def index():
-    if request.method=='GET':
-        # film=Film()
-        # for i in range(0,12):
-        #     film.append(Film.query.filter(Film.id==i)).first()
-        return render_template('index.html')
+    context={
+        "movies": Film.query.limit(36).all()
+    }
+    return render_template('index.html',**context)
+ 
+
+@app.route('/movies/',methods=['GET','POST'])
+@login_required
+def movies():
+    # if request.form.get('change'):
+    #     context={
+    #     "movies": Film.query.limit(24,36).all()
+    # }
+    if request.method=='POST':
+        print('1')
     else:
         pass
- 
-@app.route('/signup/',methods=['POST','GET'])
-def signup():
-    if request.method=='GET':
-        return render_template('signup.html')
+    if request.values.get('change'):
+        print(a)
+        context={
+        "movies": Film.query.all()[5:8]
+    }
+        return render_template('index.html',**context)
     else:
-        email = request.form.get('email')
+        return redirect(url_for('index'))
+            
+
+@app.route('/movie/',methods=['GET','POST'])
+@login_required
+def filmtest():
+    if request.method=='GET':
+        context={
+        "movies": Film.query.limit(36).all()
+        }
+        return render_template('film.html')
+    else:
+    # movie1 = User.query.filter(Film.name == name).first()
+        context={
+        "movies": Film.query.limit(36).all()
+        }
+        # return render_template('film.html',**context)
+        return {"hh":"dd"}
+
+
+@app.route('/register/',methods=['POST','GET'])
+def register():
+    if request.method=='GET':
+        return render_template('register.html')
+    else:
+        email = request.values.get('email')
+        print(email)
         username = request.form.get('username')
+        print(username)
         password1 = request.form.get('password1')
+        print(password1)
         password2 = request.form.get('password2')
+        print(password2)
+        sex=request.values.get('Sex')
+        print(sex)
         # 邮箱验证，如果被注册了，就不能再注册了
         user1 = User.query.filter(User.email == email).first()
         if user1:
             #邮箱已被注册
-            return u'该邮箱已被注册，请更换邮箱！'
+            flash('该邮箱已被注册，请更换邮箱！')
+            return render_template('register.html',myuser=user1) 
         else:
-            # if user2:
-            #     #
-            #     return u'该用户名已被注册，请更换用户名！'
-            # else:
-                # password1要和password2相等才可以
-            if password1 != password2:
-                return u'两次密码不相等，请核对后再填写！'
-            else:
-                user = User(email=email,username=username,password=generate_password_hash(password1))
-                db.session.add(user)
-                db.session.commit()
-                # 如果注册成功，就让页面跳转到登录的页面
-                return redirect(url_for('login'))
+            user = User(email=email,username=username,password=generate_password_hash(password1),sex=sex)
+            db.session.add(user)
+            db.session.commit()
+            # 如果注册成功，就让页面跳转到登录的页面
+            return redirect(url_for('login'))
+
+@app.route('/store/')
+def store():
+    f1 = open('film.json', 'a')
+    filmlist=[]
+    for film in Film.query.all():
+        f={
+            "name":film.name,
+            "show_id":film.id,
+            "tags":film.tags,
+            "time":film.time,
+            "intro":film.introduction,
+            "pic":film.pic,
+            "area":film.area,
+            "score":film.score
+        }
+        filmlist.append(f)
+    print(filmlist)
+    return "finish"
 
 if __name__=='__main__':
     app.run()

@@ -180,7 +180,7 @@ li{
 	padding: 0px;
 	border-bottom: 1px solid #484a5c;
 	text-align: left;
-	white-space: nowrap;
+	/* white-space: nowrap; */
 	
 }
 .introduce2 li{

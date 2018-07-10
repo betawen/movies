@@ -90,14 +90,27 @@
             <div class="input">
                 <input id = "name1" class="input_text" value=""  placeholder="请输入用户名" name="email">
 				<input id = "name2" class="input_text" type= "password"  value=""  placeholder="请输入密码" name="password">
+
+				
+					
 			</div>
 			<div class="join">
 				<button class="join" >JOIN</button>
+				
+			
+				
+
 			  </div>
+
 		</form>
 			
             <div class="input" id="choose">
-                <h4 id="register"><a href="{{url_for('signup')}}">注册账号</a></h4>
+					{% for message in get_flashed_messages() %}
+					<div id="messagereturn">
+								{{ message }}
+					</div>
+							{% endfor %}				
+                <h4 id="register"><a href="{{url_for('register')}}">注册账号</a></h4>
 				<h4 id="forget"><a href="#" onclick = "change()">忘记密码</a></h4>
             </div>
             

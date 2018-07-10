@@ -1,0 +1,146 @@
+.head{
+	height: 40px;
+	width: 1280px;
+	background-color: #4a485c;
+}
+
+.body{
+	background-color: #f8f8f8;
+}
+
+.home{
+	padding-left:30px;
+	padding-top:7px;
+	width: 70px;
+	float: left;
+}
+
+.home img{
+	height: 25px;
+	width: 25px;
+}
+
+.homeword{
+	margin-top: 1px;
+	float:right;
+	color:#f8f8f8;
+}
+
+.search form {
+  width: auto;
+  float: right;
+  margin-right: 10%;
+  margin-top: 5px;
+}
+
+.search input {
+  width: 240px;
+  height: 25px;
+  padding-left: 15px;
+  border-radius: 42px;
+  border: 2px solid #324b4e;
+  
+  outline: none;
+  position: relative;
+  transition: .3s linear;
+}
+
+.headpicture{
+	height: 26px;
+	width: 26px;
+	float: right;
+	margin-top: 7px;
+	margin-right: 25px;
+}
+
+.movie{
+	margin-top: 2%;
+	margin-left: 5%;
+	width:800px;
+	height:450px;
+}
+
+.goal{
+	float: right;
+	margin-right:20%;
+	margin-top: 3%;
+	font-size: 24px;
+}
+
+.chat{
+	margin-right: 1%;
+	margin-top: 1%;
+	width: 380px;
+	height: 380px;
+	float: right;
+	border:1px solid #324b4e;
+	background-color: white;
+}
+
+.chattitle{
+	width:380px;
+	height: 30px;
+	background-color: rgba(192,192,192,0.2);
+}
+
+.titlefont{
+	float: left;
+	margin-left: 30%;
+	font-size: 16px;
+	margin-top:3px;
+}
+
+.titlepicture{
+	width: 25px;
+	height: 25px;
+	float: right;
+	margin-right: 2%;
+	margin-top: 2px;
+}
+
+.chatcontent{
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.yourname{
+	width: 150px;
+	color: lightblue;
+	float: left;
+}
+
+.yourtime{
+	float: right;
+	width: 70px;
+	margin-right: 120px;
+	margin-top: 3px;
+	font-size: 12px;
+}
+
+.yourwords{
+	float: left;
+	width: 350px;
+}
+
+.mywords{
+	float: right;
+	margin-left: 10%;
+}
+
+.textarea{
+	margin-top: 180px;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	width: 378px;
+	height: 50px;
+	resize: none;
+}
+
+.sendbutton{
+	float: right;
+	height: 25px;
+	width: 60px;
+	margin-right: 5px;
+	font-size: 12px;
+}

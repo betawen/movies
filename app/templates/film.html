@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>电影播放</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='film.css')}}"/> 
+</head>
+<body class="body">
+	<div>
+		<div class="head">
+			<div class="home">
+				<a href="www.baidu.com">
+					<img src="{{url_for('static',filename='目录.png')}}">
+				</a>
+				<div class="homeword">主页</div>
+			</div>
+			<div>
+				<img src="{{url_for('static',filename='图片1.png')}}" class="headpicture">
+			</div>	
+			<div class="search">
+				<form action="" method="POST">
+		  			<input type="text" placeholder="搜索从这里开始...">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div style="float: left;">
+			<div id="youkuplayer" class="movie"></div>
+			<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+			<script type="text/javascript">
+				var player = new YKU.Player('youkuplayer',{
+				styleid: '0',
+				client_id: '4b68c05ec9fccfe0',
+				// vid: 'XNjYyOTQzOTky',
+				vid:'{{movies[1].show_id}}',
+				newPlayer: true
+				});
+			</script>
+		</div>
+		<div>
+			<div class="goal">
+				<div>豆瓣评分 6.9</div>
+			</div>
+			<div class="chat">
+				<form>
+					<div class="chattitle">
+						<div class="titlefont">当前电影群聊</div>
+						<img src="{{url_for('static',filename='图片1.png')}}" class="titlepicture">
+					</div>
+					<div class="chatcontent"> 
+						<div>
+							<div class="yourname">显示对方昵称</div>
+							<div class="yourtime">9:16:56</div>
+							<div class="yourwords">这是对方发的消息我来试试这句话要是长一点会怎么样</div>
+						</div>
+						<div class="mywords">好</div>
+					</div>
+					<textarea class="textarea"></textarea>
+					<button type="button" class="sendbutton">发送</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

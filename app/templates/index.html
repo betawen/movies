@@ -78,11 +78,16 @@
     	</div>
     	
     	<div class="command">
-    	<h2>推荐专区</h2>
+    	
     	  <div class="films">
+					<h2>推荐专区</h2>
+					<form action="" method="POST">
+					<button name="change" value="1">换一批</button>
+					</form>
     	  	<div class="filmsleft">
     	  		<div class="filmhover" id="f01">
-    	  			<img src="{{url_for('static',filename='f1.jpg')}}">
+
+    	  			<img src="{{movies[1].pic}}">
     	  		</div>
     	  		<div class="filmhover" id="f02">
     	  			<img src="{{url_for('static',filename='f2.jpg')}}">
@@ -123,26 +128,34 @@
     	  		<img src="{{url_for('static',filename='label.png')}}" id="label">
     	  		<img src="{{url_for('static',filename='f1.jpg')}}" id="film-show">
     	  		<div filmhead>
-    	  			<h2>三生三世，十里桃花</h2>
+    	  			<h2>{{movies[2].name}}</h2>
     	  			<h2>2017</h2>
     	  		</div>
     	  		<div class="want-to-button">
     	  	         <img src="{{url_for('static',filename='want.png')}}">
     	  		</div>
     	  		<div class="introduce">
-    	  			<p>简介：天族战神墨渊（杨洋 饰）镇压鬼君擎苍（严屹宽 饰）<br>于无妄海，魂飞魄散，仙体冰封于青丘炎华洞内。青丘帝姬白<br>浅（刘亦菲 饰）同天族太子夜华（杨洋 饰）早有婚约，二人<br>却一直未曾相见。直至东海盛宴，夜华发现白浅竟然同亡妻素<br>素（刘亦菲 饰）相貌一样，就势住进白浅的青丘，放下太子身<br>段，为求解开白浅与素素之谜。夜华侧妃素锦（李纯 ...</p>
-    	  		</div>
+							<!-- <p>简介：天族战神墨渊（杨洋 饰）镇压鬼君擎苍（严屹宽 饰）<br>于无妄海，魂飞魄散，仙体冰封于青丘炎华洞内。青丘帝姬白<br>
+								浅（刘亦菲 饰）同天族太子夜华（杨洋 饰）早有婚约，二人<br>却一直未曾相见。直至东海盛宴，夜华发现白浅竟然同亡妻素<br>
+								素（刘亦菲 饰）相貌一样，就势住进白浅的青丘，放下太子身<br>段，为求解开白浅与素素之谜。夜华侧妃素锦（李纯 ...</p> -->
+						
+						<p>
+							{{movies[1].introduction}}
+						</p>
+							</div>
     	  		<div class="introduce2">
     	  		    <li>
     	  		       豆瓣评分：7.3
     	  		    </li>
-    	  			<li>
+    	  			<!-- <li>
     	  			  电影类型：奇幻, 爱情
-    	  		    </li>
+								</li> -->
+								<li>
+									电影类型：{{movies[1].tags}}
+								</li>
     	  		    <li>
     	  		    	电影地区：中国
-    	  		    </li>
-    	  		    
+    	  		    </li>    	  		    
     	  		</div>
     	  		<div class="introduce3">
     	  			

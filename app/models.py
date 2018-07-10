@@ -8,6 +8,7 @@ class User(db.Model):
     email = db.Column(db.String(64),nullable=False)
     username = db.Column(db.String(50),nullable=False)
     password = db.Column(db.String(100),nullable=False)
+    sex=db.Column(db.String(64),nullable=False)
     # confirmed = db.Column(db.Boolean, default=False)
 
     # def generate_confirmation_token(self, expiration=3600):
@@ -36,15 +37,15 @@ class User(db.Model):
     #     self.username = username
     #     self.password = generate_password_hash(password)
 
-class Comments(db.Model):
-    __tablename__ = 'comment'
-    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
-    content = db.Column(db.Text,nullable=False)
-    # now()获取的是服务器第一次运行的时间
-    # now就是每次创建一个模型的时候，都获取当前的时间
-    create_time = db.Column(db.DateTime,default=datetime.now)
-    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    user = db.relationship('User',backref=db.backref('comment'))
+# class Comments(db.Model):
+#     __tablename__ = 'comment'
+#     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+#     content = db.Column(db.Text,nullable=False)
+#     # now()获取的是服务器第一次运行的时间
+#     # now就是每次创建一个模型的时候，都获取当前的时间
+#     create_time = db.Column(db.DateTime,default=datetime.now)
+#     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+#     user = db.relationship('User',backref=db.backref('comment'))
 
 		# #创建电影表
 		# self.cursor.execute("drop table if exists films")
@@ -71,6 +72,7 @@ class Film(db.Model):
     time=db.Column(db.String(64),nullable=False)
     introduction=db.Column(db.String(1000),nullable=False)
     show_id=db.Column(db.String(64),nullable=False)
+    # watch=db.relationship('User',backref=db.backref('films'))
 
     # def __init__(self,*args,**kwargs):
     #         show_id = kwargs[0]
